@@ -2,26 +2,31 @@
 #include "../myexception/myexception.hpp"
 #include <iostream>
 
-std::string Instrument::get_name();
-float Instrument::get_cost();
-int Instrument::get_count_in_orchestra();
-std::string Instrument::get_owner_name();
+const std::string Instrument::get_name() const { return this->name; }
+const float Instrument::get_cost() const { return this->cost; }
+const int Instrument::get_count_in_orchestra() const {
+  return this->count_in_orchestra;
+}
+const std::string Instrument::get_owner_name() const {
+  return this->owner_name;
+}
 
 void Instrument::set_name(std::string name) { this->name = name; }
-void Instrument::set_cost(float cost) { this->cost = cost; }
+void Instrument::set_cost(float cost) {
+  if cost
+    < 0 {}
+  this->cost = cost;
+}
 void Instrument::set_count_in_orchestra(int count_in_orchestra) {
-  //  if (count_in_orchestra <= 0)
-  //  {
-  //    throw
-  //  }
+  if (count_in_orchestra <= 0) {
+    throw MyException(
+        "Количество инструментов в оркестре не может быть меньше нуля!");
+  }
   this->count_in_orchestra = count_in_orchestra;
 }
 void Instrument::set_owner_name(std::string owner_name) {
-  this->owner_name = owner_name;
+  owner_name = owner_name;
 }
-
-bool Instrument::save(std::ofstream &);
-bool Instrument::load(std::ifstream &);
 
 void Instrument::print() {
   std::cout << "--- --- ---" << std::endl;
